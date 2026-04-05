@@ -8,21 +8,21 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@700;800;900&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg:      #07070E;
-  --surf:    #0D0D18;
-  --surf2:   #111120;
-  --border:  #1E293B;
-  --muted:   #334155;
-  --dim:     #475569;
-  --text:    #CBD5E1;
-  --bright:  #F1F5F9;
-  --peak:    #EF4444;
-  --amber:   #F59E0B;
-  --amberD:  #92400E;
-  --cyan:    #06B6D4;
-  --green:   #10B981;
-  --purple:  #8B5CF6;
-  --rose:    #F43F5E;
+  --bg:      #040D0B;
+  --surf:    #071410;
+  --surf2:   #0A1C17;
+  --border:  #0F2E24;
+  --muted:   #1A4035;
+  --dim:     #3D7A68;
+  --text:    #A8D5C8;
+  --bright:  #E8FFF9;
+  --peak:    #00E5A0;
+  --amber:   #00D4A0;
+  --amberD:  #006B50;
+  --cyan:    #00B4D8;
+  --green:   #00E5A0;
+  --purple:  #7C6FF7;
+  --rose:    #FF6B8A;
   --indigo:  #818CF8;
   --mono:    'Space Mono', monospace;
   --display: 'Syne', sans-serif;
@@ -54,7 +54,7 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:var(--m
 #app{display:flex;flex-direction:column;height:100vh;overflow:hidden}
 
 /* ── HEADER ── */
-#header{padding:14px 20px 10px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:12;flex-shrink:0;background:linear-gradient(180deg,#0A0A18 0%,var(--bg) 100%)}
+#header{padding:14px 20px 10px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:12;flex-shrink:0;background:linear-gradient(180deg,#061210 0%,var(--bg) 100%)}
 .header-left .sub{font-size:7px;letter-spacing:3px;color:var(--muted);text-transform:uppercase;margin-bottom:3px}
 .header-left .title{font-family:var(--display);font-size:20px;font-weight:900;color:var(--bright);letter-spacing:-0.5px}
 .header-left .sub2{font-size:8px;color:var(--dim);margin-top:2px}
@@ -65,25 +65,25 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:var(--m
 .xp-label{font-size:6px;letter-spacing:2px;color:var(--dim);text-transform:uppercase}
 .xp-val{font-size:14px;font-weight:700;color:var(--amber);line-height:1.2}
 .xp-bar{width:100%;height:3px;background:var(--border);border-radius:2px;margin-top:4px;overflow:hidden}
-.xp-bar-fill{height:100%;background:linear-gradient(90deg,var(--amber),#FCD34D);border-radius:2px;transition:width .5s ease}
+.xp-bar-fill{height:100%;background:linear-gradient(90deg,#00B48A,#00E5A0);border-radius:2px;transition:width .5s ease}
 .xp-level{font-size:6px;color:var(--dim);margin-top:2px}
 
 /* Streak */
-.streak-widget{background:#130400;border:1px solid #7C2D12;border-radius:10px;padding:8px 12px;text-align:center;min-width:60px}
+.streak-widget{background:#020D09;border:1px solid #006B50;border-radius:10px;padding:8px 12px;text-align:center;min-width:60px}
 .streak-icon{font-size:14px}
-.streak-num{font-size:12px;font-weight:700;color:#FCA5A5;line-height:1}
-.streak-label{font-size:6px;letter-spacing:1px;color:#EF4444;text-transform:uppercase;margin-top:1px}
+.streak-num{font-size:12px;font-weight:700;color:#00E5A0;line-height:1}
+.streak-label{font-size:6px;letter-spacing:1px;color:#00B48A;text-transform:uppercase;margin-top:1px}
 
 /* Peak */
-.peak-widget{background:#130400;border:1.5px solid #991B1B;border-radius:10px;padding:8px 10px;text-align:center;box-shadow:0 0 14px #DC262630;animation:glow 3s ease-in-out infinite}
-.peak-time{font-size:11px;font-weight:700;color:#FCA5A5}
-.peak-sub{font-size:6px;letter-spacing:1px;color:#EF4444;text-transform:uppercase;margin-top:1px}
+.peak-widget{background:#020D09;border:1.5px solid #006B50;border-radius:10px;padding:8px 10px;text-align:center;box-shadow:0 0 14px #DC262630;animation:none}
+.peak-time{font-size:11px;font-weight:700;color:#00E5A0}
+.peak-sub{font-size:6px;letter-spacing:1px;color:#00B48A;text-transform:uppercase;margin-top:1px}
 
 /* ── TABS ── */
 #tabs{display:flex;border-bottom:1px solid var(--border);padding:0 20px;overflow-x:auto;flex-shrink:0;background:var(--surf)}
 .tab-btn{padding:10px 14px;background:none;border:none;border-bottom:2px solid transparent;color:var(--dim);font-size:9px;font-weight:700;cursor:pointer;letter-spacing:.5px;font-family:var(--mono);white-space:nowrap;transition:all .15s}
 .tab-btn:hover{color:var(--text)}
-.tab-btn.active{border-bottom-color:var(--amber);color:#FCD34D}
+.tab-btn.active{border-bottom-color:var(--peak);color:#00E5A0}
 
 /* ── CONTENT ── */
 #content{flex:1;overflow:hidden;position:relative}
@@ -105,7 +105,7 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:var(--m
 .task-body{flex:1}
 .task-text{font-size:11px;font-weight:600;color:var(--bright);line-height:1.5}
 .task-text.done{text-decoration:line-through;color:var(--dim)}
-.peak-badge{display:inline-block;font-size:7px;color:#FCA5A5;background:#450A0A;border:1px solid #7C2D12;border-radius:20px;padding:1px 8px;letter-spacing:1px;margin-bottom:5px}
+.peak-badge{display:inline-block;font-size:7px;color:#00E5A0;background:#00D4A010;border:1px solid #006B50;border-radius:20px;padding:1px 8px;letter-spacing:1px;margin-bottom:5px}
 .resource-link{display:inline-flex;align-items:center;gap:5px;margin-top:7px;padding:4px 11px;border-radius:20px;font-size:9px;font-weight:700;text-decoration:none;transition:all .15s}
 .resource-link:hover{filter:brightness(1.2)}
 .tryit-btn{flex-shrink:0;padding:4px 9px;background:none;border:1px solid var(--border);border-radius:7px;font-size:8px;color:var(--dim);cursor:pointer;font-family:var(--mono);font-weight:700;white-space:nowrap;transition:all .15s}
@@ -167,23 +167,23 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:var(--m
 .xp-float{position:fixed;font-size:11px;font-weight:700;color:var(--amber);pointer-events:none;z-index:300;animation:xpFloat .8s ease forwards}
 
 /* ── AI WIDGET ── */
-#ai-panel{position:fixed;bottom:20px;left:20px;background:var(--surf2);border:1px solid #4C1D95;border-radius:14px;width:240px;z-index:100;box-shadow:0 8px 32px #8B5CF620;overflow:hidden;transition:all .3s}
+#ai-panel{position:fixed;bottom:20px;left:20px;background:var(--surf2);border:1px solid #0F2E24;border-radius:14px;width:240px;z-index:100;box-shadow:0 8px 32px #00D4A015;overflow:hidden;transition:all .3s}
 #ai-panel.collapsed{width:44px;height:44px;border-radius:22px}
-.ai-header{padding:10px 12px;display:flex;align-items:center;gap:8px;cursor:pointer;border-bottom:1px solid #4C1D9540}
+.ai-header{padding:10px 12px;display:flex;align-items:center;gap:8px;cursor:pointer;border-bottom:1px solid #0F2E24}
 .ai-header-icon{font-size:16px;flex-shrink:0}
-.ai-header-title{font-size:9px;font-weight:700;color:var(--purple);letter-spacing:.5px;flex:1}
+.ai-header-title{font-size:9px;font-weight:700;color:var(--peak);letter-spacing:.5px;flex:1}
 .ai-header-toggle{font-size:9px;color:var(--dim)}
 .ai-body{padding:10px 12px;max-height:300px;overflow-y:auto}
 .ai-messages{display:flex;flex-direction:column;gap:8px;margin-bottom:8px;max-height:200px;overflow-y:auto}
 .ai-msg{padding:8px 10px;border-radius:8px;font-size:9px;line-height:1.6}
-.ai-msg.user{background:#1E0A4E;color:#C4B5FD;align-self:flex-end;max-width:90%;border:1px solid #4C1D9540}
+.ai-msg.user{background:#041A11;color:#A8D5C8;align-self:flex-end;max-width:90%;border:1px solid #0F2E2440}
 .ai-msg.bot{background:var(--surf);color:var(--text);border:1px solid var(--border);max-width:100%}
 .ai-msg.loading{color:var(--dim);font-style:italic;animation:pulse 1.5s ease-in-out infinite}
 .ai-input-row{display:flex;gap:6px}
-.ai-input{flex:1;background:var(--bg);border:1px solid #4C1D9540;border-radius:7px;padding:6px 8px;font-size:9px;color:var(--bright);font-family:var(--mono);outline:none;resize:none}
-.ai-input:focus{border-color:var(--purple)}
-.ai-send{background:var(--purple);border:none;border-radius:7px;padding:0 10px;color:#fff;font-size:10px;cursor:pointer;font-weight:700;transition:all .15s}
-.ai-send:hover{background:#7C3AED}
+.ai-input{flex:1;background:var(--bg);border:1px solid #0F2E2440;border-radius:7px;padding:6px 8px;font-size:9px;color:var(--bright);font-family:var(--mono);outline:none;resize:none}
+.ai-input:focus{border-color:var(--peak)}
+.ai-send{background:var(--peak);border:none;border-radius:7px;padding:0 10px;color:#fff;font-size:10px;cursor:pointer;font-weight:700;transition:all .15s}
+.ai-send:hover{background:#00B48A}
 .ai-hint{font-size:7px;color:var(--dim);margin-bottom:6px;line-height:1.5}
 #ai-panel.collapsed .ai-body,#ai-panel.collapsed .ai-header-title,#ai-panel.collapsed .ai-header-toggle{display:none}
 #ai-panel.collapsed .ai-header{border:none;padding:12px}
@@ -246,8 +246,8 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:var(--m
 /* ── QUIZ MODAL ── */
 #quiz-overlay{position:fixed;inset:0;background:#000000CC;z-index:800;display:none;align-items:center;justify-content:center;padding:16px}
 #quiz-overlay.open{display:flex}
-#quiz-box{background:#0A0A14;border:1.5px solid var(--amber);border-radius:16px;width:100%;max-width:560px;max-height:90vh;overflow-y:auto;animation:popIn .25s ease;box-shadow:0 0 40px #F59E0B20}
-.quiz-header{padding:16px 18px 12px;border-bottom:1px solid var(--border);display:flex;align-items:flex-start;justify-content:space-between;gap:12;position:sticky;top:0;background:#0A0A14;z-index:2}
+#quiz-box{background:#030D09;border:1.5px solid var(--peak);border-radius:16px;width:100%;max-width:560px;max-height:90vh;overflow-y:auto;animation:popIn .25s ease;box-shadow:0 0 40px #F59E0B20}
+.quiz-header{padding:16px 18px 12px;border-bottom:1px solid var(--border);display:flex;align-items:flex-start;justify-content:space-between;gap:12;position:sticky;top:0;background:#030D09;z-index:2}
 .quiz-title{font-size:11px;font-weight:900;color:var(--bright)}
 .quiz-sub{font-size:8px;color:var(--dim);margin-top:3px}
 .quiz-close{background:none;border:1px solid var(--border);border-radius:7px;color:var(--dim);font-size:10px;padding:4px 9px;cursor:pointer;font-family:var(--mono);flex-shrink:0}
@@ -255,23 +255,23 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:var(--m
 .quiz-loading{text-align:center;padding:32px 16px;color:var(--dim);font-size:10px;animation:pulse 1.5s ease-in-out infinite}
 .quiz-loading-icon{font-size:28px;margin-bottom:10px}
 .qcard{background:var(--surf);border:1px solid var(--border);border-radius:12px;padding:14px 15px;margin-bottom:10px;transition:border-color .2s}
-.qcard.active{border-color:var(--amber)}
+.qcard.active{border-color:var(--peak)}
 .qcard.graded-correct{border-color:var(--green);background:#001510}
 .qcard.graded-wrong{border-color:var(--rose);background:#130009}
 .qnum{font-size:7px;letter-spacing:2px;color:var(--dim);text-transform:uppercase;margin-bottom:6px}
 .qtext{font-size:11px;color:var(--bright);line-height:1.6;margin-bottom:10px;font-weight:600}
 .qinput{width:100%;background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:8px 11px;font-size:10px;color:var(--bright);font-family:var(--mono);outline:none;resize:vertical;min-height:52px;line-height:1.5;box-sizing:border-box;transition:border-color .15s}
-.qinput:focus{border-color:var(--amber)}
+.qinput:focus{border-color:var(--peak)}
 .qinput:disabled{opacity:.6;cursor:not-allowed}
 .qfeedback{margin-top:8px;padding:8px 10px;border-radius:8px;font-size:9px;line-height:1.55}
 .qfeedback.correct{background:#002010;border:1px solid #065F46;color:var(--green)}
 .qfeedback.wrong{background:#180008;border:1px solid #9F1239;color:#FDA4AF}
 .quiz-actions{margin-top:16px;display:flex;justify-content:flex-end;gap:8px}
 .quiz-btn{padding:9px 20px;border:none;border-radius:9px;font-size:10px;font-weight:800;cursor:pointer;font-family:var(--mono);transition:all .15s}
-.quiz-btn.primary{background:var(--amber);color:#000}
+.quiz-btn.primary{background:var(--peak);color:#000}
 .quiz-btn.secondary{background:none;border:1px solid var(--border);color:var(--dim)}
 .quiz-btn:disabled{opacity:.4;cursor:not-allowed}
-.score-banner{background:linear-gradient(135deg,#0E0900,#1A1000);border:1.5px solid var(--amber);border-radius:12px;padding:18px;text-align:center;margin-bottom:14px}
+.score-banner{background:linear-gradient(135deg,#020D09,#041A11);border:1.5px solid var(--peak);border-radius:12px;padding:18px;text-align:center;margin-bottom:14px}
 .score-big{font-size:42px;font-weight:900;color:var(--amber);line-height:1}
 .score-label{font-size:8px;letter-spacing:2px;color:var(--dim);text-transform:uppercase;margin-top:4px}
 .score-msg{font-size:10px;color:var(--text);margin-top:8px;line-height:1.6}
@@ -426,8 +426,8 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:var(--m
   <!-- TABS -->
   <div id="tabs">
     <button class="tab-btn active" onclick="setTab('schedule')">📅 Schedule</button>
-    <button class="tab-btn" onclick="setTab('daily')">🗓 Daily Plan</button>
-    <button class="tab-btn" onclick="setTab('tasks')">✅ Study Tasks</button>
+    <button class="tab-btn" onclick="setTab('daily')">🌱 Light Work</button>
+    <button class="tab-btn" onclick="setTab('tasks')">⚡ Peak Mode</button>
     <button class="tab-btn" onclick="setTab('skills')">💡 Skills</button>
     <button class="tab-btn" onclick="setTab('execution')">⚡ Execution</button>
     <button class="tab-btn" onclick="setTab('progress')">📊 Progress</button>
@@ -445,7 +445,7 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:var(--m
             <div class="section-title" style="color:#818CF8;margin-bottom:4px">💡 Your Strategy</div>
             <div style="font-size:10px;color:#C7D2FE;line-height:1.85">You're a <strong style="color:#A5B4FC">natural night person</strong> building morning discipline. Mornings = light warmup. <strong style="color:#FCA5A5">7 PM = hardest subjects</strong>. Work with your brain, not against it.</div>
           </div>
-          <div class="strategy-card" style="background:#0E0620;border:1px solid #4C1D95">
+          <div class="strategy-card" style="background:#0E0620;border:1px solid #0F2E24">
             <div class="section-title" style="color:#7C3AED;margin-bottom:4px">⏰ Gradual Wake-Up Plan</div>
             <div style="font-size:10px;color:#C4B5FD;line-height:1.85"><strong>Wk 1–2:</strong> Wake 9 AM &nbsp;→&nbsp; <strong>Wk 3–4:</strong> Wake 8 AM &nbsp;→&nbsp; <strong>Wk 5+:</strong> Wake 7 AM. Same on weekends.</div>
           </div>
@@ -674,8 +674,8 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:var(--m
 
             <div class="method-card" style="background:#0D0520;border-color:#4C1D95">
               <div class="method-subj" style="color:#A78BFA">⚗️ CHEMISTRY</div>
-              <div class="method-step"><span class="method-badge" style="background:#080014;color:#A78BFA;border:1px solid #4C1D95">INPUT</span><div class="method-text"><strong>CrashCourse Chemistry</strong> (max 15 min) + write the key reaction/formula. Don't skip writing — your hand remembers what your eyes forget.</div></div>
-              <div class="method-step"><span class="method-badge" style="background:#080014;color:#C4B5FD;border:1px solid #4C1D95">PRACTICE</span><div class="method-text"><strong>Balance 8–10 equations</strong>. Start with simple ones, progress to harder. For stoichiometry: always show units, always check molar mass. Wrong units = wrong answer.</div></div>
+              <div class="method-step"><span class="method-badge" style="background:#080014;color:#A78BFA;border:1px solid #0F2E24">INPUT</span><div class="method-text"><strong>CrashCourse Chemistry</strong> (max 15 min) + write the key reaction/formula. Don't skip writing — your hand remembers what your eyes forget.</div></div>
+              <div class="method-step"><span class="method-badge" style="background:#080014;color:#C4B5FD;border:1px solid #0F2E24">PRACTICE</span><div class="method-text"><strong>Balance 8–10 equations</strong>. Start with simple ones, progress to harder. For stoichiometry: always show units, always check molar mass. Wrong units = wrong answer.</div></div>
               <div class="method-step"><span class="method-badge" style="background:#041210;color:#10B981;border:1px solid #064E3B">OUTPUT</span><div class="method-text"><strong>Write the "why"</strong>: don't just solve, explain why the equation is balanced or why a bond forms. Lab reports later will thank you for this habit.</div></div>
             </div>
 
@@ -1443,41 +1443,46 @@ function catColor(cat){
 function renderDailyContent(){
   renderDailyPills();
   const d=DAILY[state.activeDailyDay];
-  const total=d.blocks.length;
-  const done=d.blocks.filter((_,i)=>state.checked[`daily-${state.activeDailyDay}-${i}`]).length;
+  // LIGHT WORK ONLY — filter out peak tasks
+  const lightBlocks=d.blocks.map((b,i)=>({...b,origIdx:i})).filter(b=>!b.peak);
+  const total=lightBlocks.length;
+  const done=lightBlocks.filter(b=>state.checked[`daily-${state.activeDailyDay}-${b.origIdx}`]).length;
   const pct=total?Math.round(done/total*100):0;
 
   document.getElementById('daily-header-area').innerHTML=`
-    <div class="daily-header fade-in" style="background:rgba(245,158,11,.06);border:1px solid rgba(245,158,11,.25)">
+    <div class="daily-header fade-in" style="background:rgba(0,212,160,.06);border:1px solid rgba(0,212,160,.2)">
       <div>
-        <div style="font-size:7px;color:var(--amber);letter-spacing:3px;text-transform:uppercase;margin-bottom:3px">DAILY PLAN</div>
+        <div style="font-size:7px;color:var(--peak);letter-spacing:3px;text-transform:uppercase;margin-bottom:3px">🌱 LIGHT WORK · MORNING SESSION</div>
         <div class="daily-h-title">${d.label}</div>
-        <div class="daily-h-theme" style="color:var(--amber)">${d.theme}</div>
+        <div class="daily-h-theme" style="color:var(--peak)">${d.theme}</div>
+        <div style="font-size:8px;color:var(--dim);margin-top:4px">Videos · Writing · Speaking · Reading — no hard problems here. Save your brain for 7 PM.</div>
       </div>
       <div class="daily-h-right">
-        <div class="daily-h-pct" style="color:var(--amber)">${pct}<span style="font-size:10px;font-weight:400">%</span></div>
+        <div class="daily-h-pct" style="color:var(--peak)">${pct}<span style="font-size:10px;font-weight:400">%</span></div>
         <div style="font-size:7px;color:var(--dim)">${done}/${total} done</div>
-        <div class="prog-bar" style="width:70px;margin-top:6px"><div class="prog-fill" style="width:${pct}%;background:var(--amber)"></div></div>
+        <div class="prog-bar" style="width:70px;margin-top:6px"><div class="prog-fill" style="width:${pct}%;background:var(--peak)"></div></div>
       </div>
+    </div>
+    <div style="background:#020806;border:1px solid #0F2E24;border-radius:9px;padding:10px 14px;margin-top:10px;font-size:9px;color:var(--dim);line-height:1.7">
+      ⚡ Hard problems and AI Practice are in the <strong style="color:var(--peak)">Peak Mode</strong> tab — do those at 7 PM when your brain is sharpest.
     </div>`;
 
-  document.getElementById('daily-tasks-list').innerHTML=d.blocks.map((b,i)=>{
+  document.getElementById('daily-tasks-list').innerHTML=lightBlocks.map((b)=>{
+    const i=b.origIdx;
     const ck=`daily-${state.activeDailyDay}-${i}`;
     const ek=`daily-exp-${state.activeDailyDay}-${i}`;
     const done=!!state.checked[ck];
     const open=!!state.expanded[ek];
     const cc=catColor(b.cat);
-    return`<div class="task-item fade-in" style="background:${done?'#0F1108':b.peak?'#100300':'#0A0A12'};border:1.5px solid ${done?cc+'50':b.peak?'#7C2D12':'var(--border)'}">
+    return`<div class="task-item fade-in" style="background:${done?'#030D09':'#050F0C'};border:1.5px solid ${done?cc+'60':'var(--border)'}">
       <div class="task-row">
-        <div class="checkbox${done?' checked':''}" onclick="toggleCheck('${ck}',event,10)">${done?'':''}</div>
+        <div class="checkbox${done?' checked':''}" onclick="toggleCheck('${ck}',event,10)"></div>
         <div class="task-body">
           <div style="display:flex;align-items:center;gap:7px;margin-bottom:4px;flex-wrap:wrap">
             <span style="font-size:8px;color:${cc};background:${cc}18;border:1px solid ${cc}40;border-radius:20px;padding:1px 8px">${b.cat}</span>
-            ${b.peak?'<span class="peak-badge">⚡ PEAK · 7 PM</span>':''}
           </div>
           <div class="task-text${done?' done':''}">${b.task}</div>
           ${b.link&&!done?`<a class="resource-link" href="${b.link}" target="_blank" style="background:${cc}15;border:1px solid ${cc}40;color:${cc}">▶ Open Resource ↗</a>`:''}
-          ${!done&&isPracticeTask(b.task)?`<button class="practice-btn" onclick="openQuiz(this.dataset.task)" data-task="${b.task.replace(/&/g,'and')}">⚡ Go Generate to Ai</button>`:''}
         </div>
         ${!done&&b.tryit?`<button class="tryit-btn${open?` style="border-color:${cc};color:${cc}"`:''}" onclick="toggleExpand('${ek}')">${open?'▼ Close':'💬 Try It'}</button>`:''}
       </div>
@@ -1520,16 +1525,54 @@ function renderTasksContent(){
   const done=d.tasks.filter((_,ti)=>state.checked[`${ph.id}-${state.activeDay}-${ti}`]).length;
   const pct=total?Math.round(done/total*100):0;
 
+  // Also render today's peak blocks from DAILY at the top
+  const todayPeakBlocks=DAILY[state.activeDailyDay].blocks.map((b,i)=>({...b,origIdx:i})).filter(b=>b.peak);
+  const peakDoneCount=todayPeakBlocks.filter(b=>state.checked[`daily-${state.activeDailyDay}-${b.origIdx}`]).length;
+  const peakTotal=todayPeakBlocks.length;
+  const peakPct=peakTotal?Math.round(peakDoneCount/peakTotal*100):0;
+
   document.getElementById('tasks-day-header').innerHTML=`
-    <div style="background:${ph.color}0D;border:1px solid ${ph.border};border-radius:12px;padding:13px 16px;margin-bottom:12px;display:flex;justify-content:space-between;align-items:flex-start;gap:12px" class="fade-in">
+    <div style="background:#020D09;border:1.5px solid #00D4A060;border-radius:12px;padding:13px 16px;margin-bottom:10px;display:flex;justify-content:space-between;align-items:flex-start;gap:12px;box-shadow:0 0 20px #00D4A010" class="fade-in">
       <div>
-        <div style="font-size:7px;color:${ph.color};letter-spacing:3px;text-transform:uppercase;margin-bottom:3px">${ph.label} · ${ph.theme}</div>
-        <div style="font-family:var(--display);font-size:16px;font-weight:900;color:var(--bright)">${d.icon} ${d.day}</div>
-        <div style="font-size:10px;color:${ph.color};font-weight:600;margin-top:2px">${d.focus}</div>
-        <div style="font-size:8px;color:var(--muted);font-style:italic;margin-top:2px">"${ph.tagline}"</div>
+        <div style="font-size:7px;color:#00E5A0;letter-spacing:3px;text-transform:uppercase;margin-bottom:3px">⚡ PEAK MODE · DO AT 7 PM</div>
+        <div style="font-family:var(--display);font-size:16px;font-weight:900;color:var(--bright)">Today's Hard Tasks</div>
+        <div style="font-size:10px;color:#00E5A0;margin-top:2px">Problems · Drills · AI Practice · Error Log</div>
+        <div style="font-size:8px;color:var(--dim);margin-top:4px">Your brain is sharpest 7–10 PM. This is your grind window.</div>
       </div>
       <div style="text-align:right;flex-shrink:0">
-        <div style="font-size:26px;font-weight:900;color:${ph.color}">${pct}<span style="font-size:9px;font-weight:400">%</span></div>
+        <div style="font-size:26px;font-weight:900;color:#00E5A0">${peakPct}<span style="font-size:9px;font-weight:400">%</span></div>
+        <div style="font-size:7px;color:var(--dim)">${peakDoneCount}/${peakTotal} done today</div>
+        <div class="prog-bar" style="width:65px;margin-top:6px"><div class="prog-fill" style="width:${peakPct}%;background:#00E5A0"></div></div>
+      </div>
+    </div>
+    ${todayPeakBlocks.map(b=>{
+      const ck=`daily-${state.activeDailyDay}-${b.origIdx}`;
+      const done2=!!state.checked[ck];
+      const cc=catColor(b.cat);
+      return`<div class="task-item fade-in" style="background:${done2?'#030D09':'#020A07'};border:1.5px solid ${done2?'#00D4A060':'#006B50'};margin-bottom:7px">
+        <div class="task-row">
+          <div class="checkbox${done2?' checked':''}" onclick="toggleCheck('${ck}',event,20)" style="border-color:${done2?'#00E5A0':'var(--muted)'};background:${done2?'#00E5A0':'transparent'}"></div>
+          <div class="task-body">
+            <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:5px">
+              <span style="font-size:8px;color:${cc};background:${cc}18;border:1px solid ${cc}40;border-radius:20px;padding:1px 8px">${b.cat}</span>
+              <span style="font-size:7px;color:#00E5A0;background:#00D4A015;border:1px solid #00D4A040;border-radius:20px;padding:1px 8px">⚡ PEAK TASK</span>
+            </div>
+            <div class="task-text${done2?' done':''}" style="color:${done2?'var(--dim)':'var(--bright)'}">${b.task}</div>
+            ${b.link&&!done2?`<a class="resource-link" href="${b.link}" target="_blank" style="background:${cc}15;border:1px solid ${cc}40;color:${cc}">▶ Open Resource ↗</a>`:''}
+            ${!done2&&isPracticeTask(b.task)?`<button class="practice-btn" style="border-color:#00D4A0;color:#00E5A0;background:#00D4A010" onclick="openQuiz(this.dataset.task)" data-task="${b.task.replace(/&/g,'and')}">⚡ Generate Practice Problems</button>`:''}
+          </div>
+        </div>
+      </div>`;
+    }).join('')}
+    <div style="font-size:7px;color:var(--dim);text-transform:uppercase;letter-spacing:3px;margin:16px 0 8px;padding-top:12px;border-top:1px solid var(--border)">📅 3-Month Study Plan · ${ph.label} — ${ph.theme}</div>
+    <div style="background:${ph.color}0D;border:1px solid ${ph.border};border-radius:12px;padding:12px 15px;margin-bottom:12px;display:flex;justify-content:space-between;align-items:flex-start;gap:12px">
+      <div>
+        <div style="font-size:7px;color:${ph.color};letter-spacing:3px;text-transform:uppercase;margin-bottom:3px">${ph.label} · ${ph.theme}</div>
+        <div style="font-family:var(--display);font-size:15px;font-weight:900;color:var(--bright)">${d.icon} ${d.day} — ${d.focus}</div>
+        <div style="font-size:8px;color:var(--muted);font-style:italic;margin-top:2px">"${ph.tagline}" · ${ph.weeks}</div>
+      </div>
+      <div style="text-align:right;flex-shrink:0">
+        <div style="font-size:24px;font-weight:900;color:${ph.color}">${pct}<span style="font-size:9px;font-weight:400">%</span></div>
         <div style="font-size:7px;color:var(--dim)">${done}/${total} done</div>
         <div class="prog-bar" style="width:65px;margin-top:6px"><div class="prog-fill" style="width:${pct}%;background:${ph.color}"></div></div>
       </div>
@@ -1540,7 +1583,7 @@ function renderTasksContent(){
     const ek=`tasks-exp-${ph.id}-${state.activeDay}-${ti}`;
     const done=!!state.checked[ck];
     const open=!!state.expanded[ek];
-    return`<div class="task-item fade-in" style="background:${done?ph.color+'08':t.peak?'#100300':'#0A0A12'};border:1.5px solid ${done?ph.color+'60':t.peak?'#7C2D12':'var(--border)'}">
+    return`<div class="task-item fade-in" style="background:${done?'#030D09':t.peak?'#020D09':'#050F0C'};border:1.5px solid ${done?ph.color+'60':t.peak?ph.color+'50':'var(--border)'}">
       <div class="task-row">
         <div class="checkbox${done?' checked':''}" onclick="toggleCheck('${ck}',event,10)" style="border-color:${done?ph.color:'var(--muted)'};background:${done?ph.color:'transparent'}"></div>
         <div class="task-body">
