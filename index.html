@@ -242,6 +242,41 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:var(--m
 
 /* ── NOTIFICATION ── */
 .notif{position:fixed;top:80px;right:20px;background:var(--surf2);border:1px solid var(--green);border-radius:10px;padding:10px 14px;font-size:9px;color:var(--green);z-index:500;animation:popIn .2s ease;font-weight:700;box-shadow:0 4px 16px #10B98130}
+
+/* ── QUIZ MODAL ── */
+#quiz-overlay{position:fixed;inset:0;background:#000000CC;z-index:800;display:none;align-items:center;justify-content:center;padding:16px}
+#quiz-overlay.open{display:flex}
+#quiz-box{background:#0A0A14;border:1.5px solid var(--amber);border-radius:16px;width:100%;max-width:560px;max-height:90vh;overflow-y:auto;animation:popIn .25s ease;box-shadow:0 0 40px #F59E0B20}
+.quiz-header{padding:16px 18px 12px;border-bottom:1px solid var(--border);display:flex;align-items:flex-start;justify-content:space-between;gap:12;position:sticky;top:0;background:#0A0A14;z-index:2}
+.quiz-title{font-size:11px;font-weight:900;color:var(--bright)}
+.quiz-sub{font-size:8px;color:var(--dim);margin-top:3px}
+.quiz-close{background:none;border:1px solid var(--border);border-radius:7px;color:var(--dim);font-size:10px;padding:4px 9px;cursor:pointer;font-family:var(--mono);flex-shrink:0}
+.quiz-body{padding:16px 18px}
+.quiz-loading{text-align:center;padding:32px 16px;color:var(--dim);font-size:10px;animation:pulse 1.5s ease-in-out infinite}
+.quiz-loading-icon{font-size:28px;margin-bottom:10px}
+.qcard{background:var(--surf);border:1px solid var(--border);border-radius:12px;padding:14px 15px;margin-bottom:10px;transition:border-color .2s}
+.qcard.active{border-color:var(--amber)}
+.qcard.graded-correct{border-color:var(--green);background:#001510}
+.qcard.graded-wrong{border-color:var(--rose);background:#130009}
+.qnum{font-size:7px;letter-spacing:2px;color:var(--dim);text-transform:uppercase;margin-bottom:6px}
+.qtext{font-size:11px;color:var(--bright);line-height:1.6;margin-bottom:10px;font-weight:600}
+.qinput{width:100%;background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:8px 11px;font-size:10px;color:var(--bright);font-family:var(--mono);outline:none;resize:vertical;min-height:52px;line-height:1.5;box-sizing:border-box;transition:border-color .15s}
+.qinput:focus{border-color:var(--amber)}
+.qinput:disabled{opacity:.6;cursor:not-allowed}
+.qfeedback{margin-top:8px;padding:8px 10px;border-radius:8px;font-size:9px;line-height:1.55}
+.qfeedback.correct{background:#002010;border:1px solid #065F46;color:var(--green)}
+.qfeedback.wrong{background:#180008;border:1px solid #9F1239;color:#FDA4AF}
+.quiz-actions{margin-top:16px;display:flex;justify-content:flex-end;gap:8px}
+.quiz-btn{padding:9px 20px;border:none;border-radius:9px;font-size:10px;font-weight:800;cursor:pointer;font-family:var(--mono);transition:all .15s}
+.quiz-btn.primary{background:var(--amber);color:#000}
+.quiz-btn.secondary{background:none;border:1px solid var(--border);color:var(--dim)}
+.quiz-btn:disabled{opacity:.4;cursor:not-allowed}
+.score-banner{background:linear-gradient(135deg,#0E0900,#1A1000);border:1.5px solid var(--amber);border-radius:12px;padding:18px;text-align:center;margin-bottom:14px}
+.score-big{font-size:42px;font-weight:900;color:var(--amber);line-height:1}
+.score-label{font-size:8px;letter-spacing:2px;color:var(--dim);text-transform:uppercase;margin-top:4px}
+.score-msg{font-size:10px;color:var(--text);margin-top:8px;line-height:1.6}
+.practice-btn{display:inline-flex;align-items:center;gap:5px;margin-top:7px;padding:5px 12px;background:#1A1000;border:1px solid var(--amber);border-radius:20px;font-size:9px;color:var(--amber);font-weight:700;cursor:pointer;font-family:var(--mono);transition:all .15s}
+.practice-btn:hover{background:var(--amber);color:#000}
 .notif.amber{border-color:var(--amber);color:var(--amber);box-shadow:0 4px 16px #F59E0B30}
 
 /* scrollable content area inside split panels */
@@ -945,6 +980,26 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:var(--m
 </div>
 
 <!-- ── AI STUDY ASSISTANT ── -->
+<!-- ── QUIZ MODAL ── -->
+<div id="quiz-overlay">
+  <div id="quiz-box">
+    <div class="quiz-header">
+      <div>
+        <div class="quiz-title" id="quiz-title">AI Practice Session</div>
+        <div class="quiz-sub" id="quiz-sub">Loading your questions...</div>
+      </div>
+      <button class="quiz-close" onclick="closeQuiz()">✕ Close</button>
+    </div>
+    <div class="quiz-body" id="quiz-body">
+      <div class="quiz-loading">
+        <div class="quiz-loading-icon">🧠</div>
+        Generating your problems...<br>
+        <span style="font-size:8px;margin-top:6px;display:block">No peeking. Answer every question before submitting.</span>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div id="ai-panel" style="display:none" class="collapsed">
   <div class="ai-header" onclick="toggleAI()">
     <div class="ai-header-icon">🤖</div>
@@ -1422,6 +1477,7 @@ function renderDailyContent(){
           </div>
           <div class="task-text${done?' done':''}">${b.task}</div>
           ${b.link&&!done?`<a class="resource-link" href="${b.link}" target="_blank" style="background:${cc}15;border:1px solid ${cc}40;color:${cc}">▶ Open Resource ↗</a>`:''}
+          ${!done&&isPracticeTask(b.task)?`<button class="practice-btn" onclick="openQuiz(this.dataset.task)" data-task="${b.task.replace(/&/g,'and')}">⚡ Practice Now</button>`:''}
         </div>
         ${!done&&b.tryit?`<button class="tryit-btn${open?` style="border-color:${cc};color:${cc}"`:''}" onclick="toggleExpand('${ek}')">${open?'▼ Close':'💬 Try It'}</button>`:''}
       </div>
@@ -1652,6 +1708,187 @@ function togglePomMinimized(){
 
 // ════════════════════════════════════════════════════════
 //  AI ASSISTANT
+// ════════════════════════════════════════════════════════
+//  QUIZ ENGINE
+// ════════════════════════════════════════════════════════
+let quizState={questions:[],answers:[],graded:false,topic:'',count:0,xpAwarded:false};
+
+// Which tasks get a Practice button (keywords to detect)
+function isPracticeTask(task){
+  const t=task.toLowerCase();
+  return t.includes('solve')||t.includes('problems')||t.includes('balance')||
+         t.includes('equations')||t.includes('practice set')||t.includes('mixed problems')||
+         t.includes('kinematics')||t.includes('problems minimum')||t.includes('drill');
+}
+
+// Extract topic + count from task text
+function parseQuizMeta(task){
+  const countMatch=task.match(/(\d+)\s*(?:mixed\s*)?problems?/i)||task.match(/(\d+)\s*(?:mixed\s*)?equations?/i);
+  const count=countMatch?Math.min(parseInt(countMatch[1]),10):5; // cap at 10
+  let topic='general math';
+  const t=task.toLowerCase();
+  if(t.includes('function')||t.includes('domain')||t.includes('range')) topic='algebra functions and domain/range';
+  else if(t.includes('exponent')||t.includes('log')) topic='exponents and logarithms';
+  else if(t.includes('trig')||t.includes('unit circle')||t.includes('sin')||t.includes('cos')) topic='trigonometry';
+  else if(t.includes('limit')) topic='calculus limits';
+  else if(t.includes('derivative')||t.includes('chain rule')) topic='derivatives and differentiation rules';
+  else if(t.includes('integral')) topic='integration/integrals';
+  else if(t.includes('kinematic')||t.includes('motion')||t.includes('velocity')||t.includes('distance, speed')) topic='kinematics (distance, speed, acceleration)';
+  else if(t.includes('energy')||t.includes('work')||t.includes('power')) topic='work, energy, and power in physics';
+  else if(t.includes('equation')||t.includes('balance')) topic='balancing chemical equations';
+  else if(t.includes('mixed')||t.includes('chemistry')&&t.includes('physics')) topic='mixed: algebra, basic chemistry, and basic physics';
+  return {count,topic};
+}
+
+async function openQuiz(taskText){
+  const {count,topic}=parseQuizMeta(taskText);
+  quizState={questions:[],answers:[],graded:false,topic,count,xpAwarded:false};
+  document.getElementById('quiz-title').textContent='⚡ Practice: '+topic.charAt(0).toUpperCase()+topic.slice(1);
+  document.getElementById('quiz-sub').textContent=count+' questions · Answer all before submitting · No cheating!';
+  document.getElementById('quiz-body').innerHTML=`<div class="quiz-loading"><div class="quiz-loading-icon">🧠</div>Generating ${count} problems on ${topic}...<br><span style="font-size:8px;margin-top:6px;display:block">This takes a few seconds. Get your paper and pen ready. ✏️</span></div>`;
+  document.getElementById('quiz-overlay').classList.add('open');
+  document.body.style.overflow='hidden';
+  try{
+    const resp=await fetch('https://api.anthropic.com/v1/messages',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        model:'claude-sonnet-4-20250514',
+        max_tokens:1000,
+        system:`You generate practice problems for a first-year Biological Engineering student at Mapua University, Philippines. They are a beginner rebuilding their math and science foundations. Generate exactly ${count} practice problems on the topic given. 
+
+CRITICAL: Respond with ONLY a JSON array. No markdown, no explanation, no backticks. Just raw JSON like this:
+[{"q":"Problem text here","a":"Correct answer here","hint":"One helpful hint without giving away the answer"}]
+
+Rules:
+- Problems should be clear and solvable by a beginner
+- For math: include the actual numbers to work with
+- For chemistry equations: write out the full equation to balance  
+- Answers must be specific and checkable
+- Hints should guide thinking, not reveal the answer
+- Use Filipino context where it feels natural (peso amounts, local examples)`,
+        messages:[{role:'user',content:`Generate ${count} practice problems on: ${topic}`}]
+      })
+    });
+    const data=await resp.json();
+    const raw=data.content?.find(c=>c.type==='text')?.text||'[]';
+    const clean=raw.replace(/```json|```/g,'').trim();
+    quizState.questions=JSON.parse(clean);
+    quizState.answers=new Array(quizState.questions.length).fill('');
+    renderQuizQuestions();
+  }catch(err){
+    document.getElementById('quiz-body').innerHTML=`<div class="quiz-loading" style="color:var(--rose)">❌ Couldn't generate questions. Check your connection and try again.<br><button class="quiz-btn secondary" style="margin-top:12px" onclick="closeQuiz()">Close</button></div>`;
+  }
+}
+
+function renderQuizQuestions(){
+  const qs=quizState.questions;
+  if(!qs.length){
+    document.getElementById('quiz-body').innerHTML='<div class="quiz-loading" style="color:var(--rose)">No questions generated. Try again.</div>';
+    return;
+  }
+  let html='<div style="font-size:9px;color:var(--dim);margin-bottom:14px;padding:9px 12px;background:var(--surf);border-radius:8px;border:1px solid var(--border)">📌 Answer every question in the boxes below. Write your full working on paper first, then type your answer. Do NOT submit until you\'ve attempted all questions.</div>';
+  qs.forEach((q,i)=>{
+    html+=`<div class="qcard" id="qcard-${i}">
+      <div class="qnum">Question ${i+1} of ${qs.length}</div>
+      <div class="qtext">${q.q}</div>
+      <input class="qinput" id="qans-${i}" placeholder="Type your answer here..." value="${quizState.answers[i]||''}" oninput="quizState.answers[${i}]=this.value" />
+      <div style="font-size:8px;color:var(--dim);margin-top:6px;cursor:pointer" onclick="toggleHint(${i})">💡 Show hint</div>
+      <div id="hint-${i}" style="display:none;font-size:9px;color:var(--amber);margin-top:5px;padding:6px 9px;background:#1A1000;border-radius:6px;border:1px solid var(--amberD)">${q.hint}</div>
+    </div>`;
+  });
+  html+=`<div class="quiz-actions">
+    <button class="quiz-btn secondary" onclick="closeQuiz()">Cancel</button>
+    <button class="quiz-btn primary" onclick="submitQuiz()" id="quiz-submit-btn">Submit All Answers →</button>
+  </div>`;
+  document.getElementById('quiz-body').innerHTML=html;
+}
+
+function toggleHint(i){
+  const el=document.getElementById(`hint-${i}`);
+  el.style.display=el.style.display==='none'?'block':'none';
+}
+
+async function submitQuiz(){
+  // Check all answered
+  const unanswered=quizState.answers.filter(a=>!a.trim()).length;
+  if(unanswered>0){
+    showNotif(`⚠️ Answer all ${quizState.questions.length} questions first!`,true);
+    return;
+  }
+  const btn=document.getElementById('quiz-submit-btn');
+  btn.disabled=true;btn.textContent='Grading...';
+  // Disable all inputs
+  quizState.questions.forEach((_,i)=>{const el=document.getElementById(`qans-${i}`);if(el)el.disabled=true;});
+  try{
+    const payload=quizState.questions.map((q,i)=>({question:q.q,correct_answer:q.a,student_answer:quizState.answers[i]}));
+    const resp=await fetch('https://api.anthropic.com/v1/messages',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        model:'claude-sonnet-4-20250514',
+        max_tokens:1000,
+        system:`You are a strict but fair teacher grading a beginner student's answers. Grade each answer generously — accept correct methods even if they have minor arithmetic errors. Accept answers that show understanding even if the format differs.
+
+Respond with ONLY a JSON array. No markdown, no backticks. Raw JSON only:
+[{"correct":true,"feedback":"Short encouraging explanation of what was right or wrong. 1-2 sentences max. Mention the correct answer."}]
+
+One object per question in the same order as given.`,
+        messages:[{role:'user',content:`Grade these answers:\n${JSON.stringify(payload)}`}]
+      })
+    });
+    const data=await resp.json();
+    const raw=data.content?.find(c=>c.type==='text')?.text||'[]';
+    const results=JSON.parse(raw.replace(/```json|```/g,'').trim());
+    renderQuizResults(results);
+  }catch(err){
+    btn.disabled=false;btn.textContent='Submit All Answers →';
+    showNotif('Grading failed. Check connection.',true);
+  }
+}
+
+function renderQuizResults(results){
+  const correct=results.filter(r=>r.correct).length;
+  const total=quizState.questions.length;
+  const pct=Math.round((correct/total)*100);
+  const xpEarned=correct*15;
+  // Score message
+  const msg=pct===100?'🔥 Perfect score! You are locked in.':pct>=80?'💪 Solid work. A few more drills and this topic is yours.':pct>=60?'📈 Good effort. Review the ones you missed and try again tomorrow.':pct>=40?'🧠 Keep going. This is early — mistakes now save you later.':'😤 Rough session, but you showed up. That\'s step one. Review the answers and re-try tomorrow.';
+  // Re-render cards with grades
+  quizState.questions.forEach((q,i)=>{
+    const card=document.getElementById(`qcard-${i}`);
+    if(!card)return;
+    const r=results[i];
+    card.className='qcard '+(r?.correct?'graded-correct':'graded-wrong');
+    const fb=document.createElement('div');
+    fb.className='qfeedback '+(r?.correct?'correct':'wrong');
+    fb.innerHTML=(r?.correct?'✅ ':'❌ ')+(r?.feedback||'');
+    const inp=document.getElementById(`qans-${i}`);
+    if(inp)inp.after(fb);
+  });
+  // Score banner
+  const body=document.getElementById('quiz-body');
+  const banner=document.createElement('div');
+  banner.className='score-banner';
+  banner.innerHTML=`<div class="score-big">${correct}/${total}</div><div class="score-label">${pct}% Correct</div><div class="score-msg">${msg}</div><div style="font-size:9px;color:var(--amber);margin-top:8px;font-weight:700">+${xpEarned} XP earned</div>`;
+  body.insertBefore(banner,body.firstChild);
+  // Award XP
+  if(!quizState.xpAwarded){
+    quizState.xpAwarded=true;
+    addXP(xpEarned,null);
+    if(pct===100) showNotif('🔥 Perfect score! +'+xpEarned+' XP');
+    else showNotif('Quiz done! +'+xpEarned+' XP earned');
+  }
+  // Update submit button
+  const actions=body.querySelector('.quiz-actions');
+  if(actions) actions.innerHTML=`<button class="quiz-btn secondary" onclick="closeQuiz()">Close</button><button class="quiz-btn primary" onclick="openQuiz('${quizState.topic} ${quizState.count} problems')">🔄 Try Again</button>`;
+}
+
+function closeQuiz(){
+  document.getElementById('quiz-overlay').classList.remove('open');
+  document.body.style.overflow='';
+}
+
 // ════════════════════════════════════════════════════════
 function toggleAI(){
   state.aiOpen=!state.aiOpen;
