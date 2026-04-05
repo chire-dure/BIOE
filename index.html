@@ -1477,7 +1477,7 @@ function renderDailyContent(){
           </div>
           <div class="task-text${done?' done':''}">${b.task}</div>
           ${b.link&&!done?`<a class="resource-link" href="${b.link}" target="_blank" style="background:${cc}15;border:1px solid ${cc}40;color:${cc}">▶ Open Resource ↗</a>`:''}
-          ${!done&&isPracticeTask(b.task)?`<button class="practice-btn" onclick="openQuiz(this.dataset.task)" data-task="${b.task.replace(/&/g,'and')}">⚡ Practice Now</button>`:''}
+          ${!done&&isPracticeTask(b.task)?`<button class="practice-btn" onclick="openQuiz(this.dataset.task)" data-task="${b.task.replace(/&/g,'and')}">⚡ Go Generate to Ai</button>`:''}
         </div>
         ${!done&&b.tryit?`<button class="tryit-btn${open?` style="border-color:${cc};color:${cc}"`:''}" onclick="toggleExpand('${ek}')">${open?'▼ Close':'💬 Try It'}</button>`:''}
       </div>
